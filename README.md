@@ -30,6 +30,11 @@
    ```shell
    kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic lea-seydoux
    ```
+   or with 3 partitions
+   ```shell
+   kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 3 --topic many-pars
+   ```
+
    + start kafka-producer console and send messages
    ```shell
    kafka-console-producer.sh --topic lea-seydoux --bootstrap-server localhost:9092

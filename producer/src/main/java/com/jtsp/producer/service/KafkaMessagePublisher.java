@@ -31,4 +31,28 @@ public class KafkaMessagePublisher {
            }
         });
     }
+
+    public void sendMessageToTopicWithManyPartitions(String msg) {
+        CompletableFuture<SendResult<String, Object>> future = template.send("many-pars", msg);
+        // future.get() will block
+        future.whenComplete((res, err) -> {
+            if (Objects.isNull(err)) {
+                log.info("send message=[{}] with offset=[{}]", msg, res.getRecordMetadata().offset());
+            } else {
+                log.error("Unable to send message=[{}] due to: {}", msg, err.getMessage());
+            }
+        });
+    }
+
+    public void sendMessageToThirdTopic(String msg) {
+        CompletableFuture<SendResult<String, Object>> future = template.send("JTSP-demo-3", msg);
+        // future.get() will block
+        future.whenComplete((res, err) -> {
+            if (Objects.isNull(err)) {
+                log.info("send message=[{}] with offset=[{}]", msg, res.getRecordMetadata().offset());
+            } else {
+                log.error("Unable to send message=[{}] due to: {}", msg, err.getMessage());
+            }
+        });
+    }
 }

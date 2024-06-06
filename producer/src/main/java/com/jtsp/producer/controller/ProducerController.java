@@ -23,4 +23,23 @@ public class ProducerController {
         kafkaMessagePublisher.sendMessageToTopic(msg);
         return ResponseEntity.ok(msg + " send success");
     }
+
+    /**
+     * Send message to topic which has 3 partitions
+     */
+    @GetMapping("/publish-2/{msg}")
+    public ResponseEntity<String> publicToAnotherTopic(@PathVariable String msg) {
+        for (int i = 0; i < 1000; i++) {
+            kafkaMessagePublisher.sendMessageToTopicWithManyPartitions("msg " + i);
+        }
+        return ResponseEntity.ok(msg + " send success");
+    }
+
+    @GetMapping("/publish-3/{msg}")
+    public ResponseEntity<String> publicToThirdTopic(@PathVariable String msg) {
+        for (int i = 0; i < 100; i++) {
+            kafkaMessagePublisher.sendMessageToThirdTopic("msg " + i);
+        }
+        return ResponseEntity.ok(msg + " send success");
+    }
 }
