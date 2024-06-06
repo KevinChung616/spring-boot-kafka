@@ -48,3 +48,26 @@ You can download kafka UI tool to visualize the kafka topics and messages
 Link: https://www.kadeck.com/
 
 **Kafka UI Tool - Kadeck**
+
+
+## Other Useful Commands
+Start Zookeeper Server
+```shell
+sh bin/zookeeper-server-start.sh config/zookeeper.properties
+```
+
+Start Kafka Server / Broker
+```shell
+sh bin/kafka-server-start.sh config/server.properties
+```
+> Note: If use docker-compose up command, kafka and zookeeper will automatically spin up
+
+list out all topic names
+```shell
+sh bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
+```
+
+Describe topics
+```shell
+sh bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic NewTopic
+```
