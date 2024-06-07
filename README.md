@@ -1,6 +1,17 @@
 # Spring Boot Kafka Demo
 
 
+## Architecture
+
+
+## Tech Stack
+
++ Spring Boot 3
++ Spring Kafka
++ Lombok
++ Kadeck
++ Postman
+
 ## Step
 
 

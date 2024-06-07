@@ -19,6 +19,7 @@
         <module>producer</module>
         <module>consumer-1</module>
         <module>consumer-2</module>
+        <module>consumer-another-1</module>
     </modules>
 
     <properties>

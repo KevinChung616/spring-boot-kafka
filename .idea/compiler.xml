@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="consumer-2" />
         <module name="producer" />
+        <module name="consumer-another-1" />
+        <module name="consumer-2" />
         <module name="consumer-1" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="consumer-1" options="-parameters" />
       <module name="consumer-2" options="-parameters" />
+      <module name="consumer-another-1" options="-parameters" />
       <module name="producer" options="-parameters" />
     </option>
   </component>
