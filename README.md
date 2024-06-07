@@ -65,10 +65,9 @@ By following above steps, you can get your hands dirty with kafka producer, brok
 In this demo, we will create standalone producer spring boot application and consumer spring boot application.
 
 **Kafka UI Tool - Kadeck**
+
 You can download kafka UI tool to visualize the kafka topics and messages
 Link: https://www.kadeck.com/
-
-**Kafka UI Tool - Kadeck**
 
 
 ## Other Useful Commands
