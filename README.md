@@ -92,6 +92,42 @@ Describe topics
 sh bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic NewTopic
 ```
 
+
+## Note about Parition Routing
+
+For producer, to send to specific partition email, use following code
+```java
+// where 2, second param is the partition ID
+CompletableFuture<SendResult<String, Object>> future = template.send("product", 2, null, payload);
+
+// source code of kafka
+public CompletableFuture<SendResult<K, V>> send(String topic, Integer partition, K key, @Nullable V data) {
+        ProducerRecord<K, V> producerRecord = new ProducerRecord(topic, partition, key, data);
+        return this.observeSend(producerRecord);
+        }
+```
+
+For consumer, to consume message from a specific parition, use following code
+```java
+    @KafkaListener(topics = "product", groupId = "analytic-group",
+            topicPartitions = {@TopicPartition(topic = "product", partitions = {"2"})}
+    )
+    public void consume(ProductPayload payload) {
+        log.info("consumer - 1 consumes the msg : {}", payload.toString());
+    }
+
+```
+
+If there are multiple consumers, please make sure consumers in one group all follow the same annotation style:
+(1) either all specify partitions
+(2) none specify partitions
+
+Otherwise, there will be following error on consumers with partition specified ones.
+```
+The coordinator is not aware of this member
+```
+
+
 ## Common Q&A
 
 Q: failed to resolve class name. Class not found `[com.jtsp.producer.dto.ProductPayload]`

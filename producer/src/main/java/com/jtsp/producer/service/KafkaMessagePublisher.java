@@ -58,7 +58,7 @@ public class KafkaMessagePublisher {
     }
 
     public void sendProductPayload(ProductPayload payload) {
-        CompletableFuture<SendResult<String, Object>> future = template.send("product", payload);
+        CompletableFuture<SendResult<String, Object>> future = template.send("product",2, null, payload);
         // future.get() will block
         future.whenComplete((res, err) -> {
             if (Objects.isNull(err)) {
