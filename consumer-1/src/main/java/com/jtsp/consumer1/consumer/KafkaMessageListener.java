@@ -1,5 +1,6 @@
 package com.jtsp.consumer1.consumer;
 
+import com.jtsp.consumer1.dto.ProductPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -8,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaMessageListener {
 
-    @KafkaListener(topics = "JTSP-demo-3", groupId = "group-1")
-    public void consume(String msg) {
-        log.info("consumer - 1 consumes the msg : {}", msg);
+    @KafkaListener(topics = "product", groupId = "analytic-group")
+    public void consume(ProductPayload payload) {
+        log.info("consumer - 1 consumes the msg : {}", payload.toString());
     }
 }

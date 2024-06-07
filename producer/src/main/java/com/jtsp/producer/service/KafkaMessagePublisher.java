@@ -1,5 +1,6 @@
 package com.jtsp.producer.service;
 
+import com.jtsp.producer.dto.ProductPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -52,6 +53,18 @@ public class KafkaMessagePublisher {
                 log.info("send message=[{}] with offset=[{}]", msg, res.getRecordMetadata().offset());
             } else {
                 log.error("Unable to send message=[{}] due to: {}", msg, err.getMessage());
+            }
+        });
+    }
+
+    public void sendProductPayload(ProductPayload payload) {
+        CompletableFuture<SendResult<String, Object>> future = template.send("product", payload);
+        // future.get() will block
+        future.whenComplete((res, err) -> {
+            if (Objects.isNull(err)) {
+                log.info("send message=[{}] with offset=[{}]", payload.toString(), res.getRecordMetadata().offset());
+            } else {
+                log.error("Unable to send message=[{}] due to: {}", payload.toString(), err.getMessage());
             }
         });
     }

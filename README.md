@@ -9,7 +9,7 @@ This is a demo project of Spring Boot 3 with Kafka. Please check different branc
 + main: contains all functions 
 ## Architecture
 
-![](kafka-architecture.jpg)
+![](kafka-architecture.png)
 ## Tech Stack
 
 + Spring Boot 3
@@ -91,3 +91,24 @@ Describe topics
 ```shell
 sh bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic NewTopic
 ```
+
+## Common Q&A
+
+Q: failed to resolve class name. Class not found `[com.jtsp.producer.dto.ProductPayload]`
+A: use following config on consumer side 
+```yaml
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group-1
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: com.jtsp.consumer1.dto.ProductPayload
+```
+R: https://stackoverflow.com/questions/72798060/spring-for-apache-kafka-json-deserialization-exception-class-not-found
+Official Doc: https://docs.spring.io/spring-kafka/reference/kafka/serdes.html#serdes-mapping-types
+
