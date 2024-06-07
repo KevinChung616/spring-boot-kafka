@@ -31,4 +31,5 @@ public class KafkaProducerConfig {
     public NewTopic createProductTopic() {
         return new NewTopic(TOPIC_NAME_PRODUCT, PARTITION_NUMBER_PRODUCT, REPLICATION_FACTOR);
     }
+
 }

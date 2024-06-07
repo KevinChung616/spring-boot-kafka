@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaMessageListener {
 
-    @KafkaListener(topics = "product", groupId = "analytic-group",
-            topicPartitions = {@TopicPartition(topic = "product", partitions = {"2"})}
-    )
-//    @KafkaListener(topics = "product", groupId = "analytic-group")
+//    @KafkaListener(topics = "product", groupId = "analytic-group",
+//            topicPartitions = {@TopicPartition(topic = "product", partitions = {"2"})}
+//    )
+    @KafkaListener(topics = "product", groupId = "analytic-group")
     public void consume(ProductPayload payload) {
         log.info("consumer - 1 consumes the msg : {}", payload.toString());
     }
