@@ -5,7 +5,7 @@ This is a demo project of Spring Boot 3 with Kafka. Please check different branc
 + message-type-string: the payload is only `String`
 + message-type-object: the payload is java object (based on `message-type-string`)
 + message-routing: enables specific partition routing settings (based on `message-type-object`)
-+ DLQ: contains dead letter queue (based on `message-routing`)
++ DLT: contains dead letter topic (based on `message-routing`)
 + main: contains all functions 
 ## Architecture
 
